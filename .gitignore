@@ -1,0 +1,11 @@
+# production
+/build/
+
+# misc
+.vscode
+.fttemplates
+
+/stats.html
+
+# dependencies
+node_modules
