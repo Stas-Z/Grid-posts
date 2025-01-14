@@ -1,0 +1,23 @@
+@use "reset";
+@use "variables/global";
+@import "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit&display=swap";
+
+.app {
+	font: var(--font-s);
+	background: var(--bg-color);
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+}
+
+.background {
+	position: fixed;
+	width: 935px;
+	height: 300px;
+	background: #7075f1;
+	z-index: 0;
+	top: 30%;
+	left: 25%;
+	border-radius: 150px;
+	transform: rotate(30deg);
+}

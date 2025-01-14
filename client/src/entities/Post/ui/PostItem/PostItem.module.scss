@@ -1,0 +1,14 @@
+.postItem {
+	width: 339px;
+	height: 234px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.titleBlock {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
