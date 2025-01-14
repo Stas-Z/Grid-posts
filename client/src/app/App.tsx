@@ -1,10 +1,10 @@
-import { MainPage } from '@/pages/MainPage'
+import { PostPage } from '@/pages/PostPage'
 
 export const App = () => {
     return (
         <div id="app" className="app">
             <div className="background" />
-            <MainPage />
+            <PostPage />
         </div>
     )
 }

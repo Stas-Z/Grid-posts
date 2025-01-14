@@ -12,3 +12,11 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+.textBlock {
+	-webkit-line-clamp: 10;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	max-height: 145px;
+}

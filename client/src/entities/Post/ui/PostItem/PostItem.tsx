@@ -21,7 +21,7 @@ export const PostItem = memo((props: PostItemProps) => {
                 title={`${post.id} ${post.title}`}
                 className={cls.titleBlock}
             />
-            <Text text={post.text} />
+            <Text text={post.body} className={cls.textBlock} />
         </Card>
     )
 })

@@ -27,7 +27,9 @@ module.exports = {
         'jsx-a11y',
     ],
     rules: {
-        'jsx-a11y/click-events-have-key-events': 'off',
+        'react/button-has-type': 'warn',
+        'jsx-a11y/click-events-have-key-events': 'warn',
+        'jsx-a11y/no-static-element-interactions': 'warn',
         'consistent-return': 'warn',
         'import/no-cycle': [2, { maxDepth: 1 }],
         'react/prop-types': 'off',

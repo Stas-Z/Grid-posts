@@ -1,9 +1,9 @@
-import { BuildEnvironmentOptions } from 'vite';
+import { BuildEnvironmentOptions } from 'vite'
 
-import { BuildOptions } from './types/config';
+import { BuildOptions } from './types/config'
 
 export function buildOptions(options: BuildOptions): BuildEnvironmentOptions {
-    const { paths, isDev } = options;
+    const { paths, isDev } = options
     return {
         outDir: paths.build,
         sourcemap: isDev ? 'inline' : false,
@@ -16,5 +16,5 @@ export function buildOptions(options: BuildOptions): BuildEnvironmentOptions {
                 assetFileNames: 'assets/[name]-[hash][extname]',
             },
         },
-    };
+    }
 }

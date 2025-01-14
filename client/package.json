@@ -6,7 +6,11 @@
     "type": "module",
     "scripts": {
         "start:vite": "vite",
-        "build:prod:vite": "vite build"
+        "build:prod:vite": "vite build",
+        "lint:ts": "eslint \"**/*.{ts,tsx}\"",
+        "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
+        "lint:scss": "npx stylelint \"**/*.scss\"",
+        "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix"
     },
     "keywords": [],
     "author": "",
@@ -38,7 +42,9 @@
         "vite-tsconfig-paths": "^5.1.4"
     },
     "dependencies": {
+        "@reduxjs/toolkit": "^2.5.0",
         "react": "^19.0.0",
-        "react-dom": "^19.0.0"
+        "react-dom": "^19.0.0",
+        "react-redux": "^9.2.0"
     }
 }
