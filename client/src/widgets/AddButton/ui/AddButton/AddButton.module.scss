@@ -1,0 +1,22 @@
+.addButton {
+	transition: background-color 0.3s ease-out;
+	border-radius: 50%;
+	position: fixed;
+	top: 3%;
+	right: 3%;
+	width: 80px;
+	height: 80px;
+	backdrop-filter: blur(170px);
+	-webkit-backdrop-filter: blur(170px);
+	z-index: var(--overlay-z-index);
+
+	&:hover {
+		background: white;
+	}
+}
+
+.delete {
+	transform: rotate(45deg);
+	transition: transform 0.3s ease-out, color 0.3s ease-out;
+	color: #ff2f54;
+}

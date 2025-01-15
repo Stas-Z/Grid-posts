@@ -1,5 +1,7 @@
 export interface IPost {
-    id: number
+    id?: number
     title: string
     body: string
 }
+
+export interface PostSchema extends IPost {}

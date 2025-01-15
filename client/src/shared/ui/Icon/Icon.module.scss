@@ -1,5 +1,6 @@
 .icon {
 	color: var(--icon);
+	transition: transform 0.3s ease-out, color 0.3s ease-out;
 }
 
 .button {

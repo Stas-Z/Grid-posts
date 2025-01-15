@@ -1,3 +1,4 @@
+import { PostSchema } from '@/entities/Post'
 import { PostListSchema } from '@/features/PostList'
 import { PostPageSchema } from '@/pages/PostPage'
 import { rtkApi } from '@/shared/api/rtkApi'
@@ -5,6 +6,7 @@ import { rtkApi } from '@/shared/api/rtkApi'
 import { createReduxStore } from './store'
 
 export interface StateSchema {
+    post: PostSchema
     postList: PostListSchema
     postPage: PostPageSchema
     [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
