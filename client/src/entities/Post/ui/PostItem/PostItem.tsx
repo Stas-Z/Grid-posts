@@ -10,15 +10,16 @@ import { IPost } from '../../model/types/post'
 interface PostItemProps {
     className?: string
     post: IPost
+    postNumber: number
 }
 
 export const PostItem = memo((props: PostItemProps) => {
-    const { className, post } = props
+    const { className, post, postNumber } = props
 
     return (
         <Card className={classNames(cls.postItem, {}, [className])}>
             <Text
-                title={`${post.id} ${post.title}`}
+                title={`${postNumber} ${post.title}`}
                 className={cls.titleBlock}
             />
             <Text text={post.body} className={cls.textBlock} />

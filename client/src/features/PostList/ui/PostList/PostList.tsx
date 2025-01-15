@@ -33,7 +33,13 @@ export const PostList = memo((props: PostListProps) => {
             className={classNames('', {}, [className])}
         >
             {posts &&
-                posts.map((post) => <PostItem key={post.id} post={post} />)}
+                posts.map((post, index) => (
+                    <PostItem
+                        key={post.id}
+                        postNumber={index + 1}
+                        post={post}
+                    />
+                ))}
             {isFetching && getPostSkeletons}
         </HStack>
     )

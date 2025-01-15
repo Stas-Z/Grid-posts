@@ -12,7 +12,7 @@ function getApiUrl(mode: string, apiUrl?: string) {
     if (mode === 'production') {
         return '/api'
     }
-    return 'http://localhost:5000/api'
+    return 'http://localhost:5000/'
 }
 
 export default defineConfig(({ mode }) => {

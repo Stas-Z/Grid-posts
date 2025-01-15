@@ -1,5 +1,6 @@
 # production
 /build/
+*/dist
 
 # misc
 .vscode
@@ -9,3 +10,6 @@
 
 # dependencies
 node_modules
+
+# dotenv environment variable files
+*.env
