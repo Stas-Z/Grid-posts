@@ -1,5 +1,6 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit'
 
+import { updatePostMiddleware } from '@/app/middleware/updatePostMiddleware'
 import { postReducer } from '@/entities/Post'
 import { postListReducer } from '@/features/PostList'
 import { postPageReducer } from '@/pages/PostPage'
@@ -20,7 +21,10 @@ export function createReduxStore(initialState?: StateSchema) {
         devTools: __IS_DEV__,
         preloadedState: initialState,
         middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(rtkApi.middleware),
+            getDefaultMiddleware().concat(
+                rtkApi.middleware,
+                updatePostMiddleware,
+            ),
     })
 
     return store

@@ -1,4 +1,4 @@
-import { ReactNode, RefObject, useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll'
@@ -7,13 +7,13 @@ import cls from './Page.module.scss'
 
 interface PageProps {
     className?: string
+    hasMore?: boolean
     children: ReactNode
     onScrollEnd?: () => void
-    parentRef?: RefObject<HTMLDivElement>
 }
 
 export const Page = (props: PageProps) => {
-    const { className, children, onScrollEnd, parentRef } = props
+    const { className, children, onScrollEnd, hasMore } = props
 
     const triggerRef = useRef<HTMLDivElement | null>(null)
     const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -27,7 +27,7 @@ export const Page = (props: PageProps) => {
     return (
         <main className={classNames(cls.page, {}, [className])}>
             {children}
-            {onScrollEnd ? (
+            {onScrollEnd && hasMore ? (
                 <div className={cls.trigger} ref={triggerRef} />
             ) : null}
         </main>

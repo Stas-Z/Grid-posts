@@ -1,6 +1,8 @@
 # production
-/build/
+*/build/
 */dist
+
+*/stats.html
 
 # misc
 .vscode

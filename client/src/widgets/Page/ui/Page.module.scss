@@ -1,4 +1,28 @@
+.page {
+	align-content: center;
+	max-width: 1596px;
+	padding: 129px 30px;
+}
+
 .trigger {
 	height: 20px;
 	margin: 10px;
+}
+
+@media (max-width: 1612px) {
+	.page {
+		max-width: 1197px;
+	}
+}
+
+@media (max-width: 1213px) {
+	.page {
+		max-width: 798px;
+	}
+}
+
+@media (max-width: 814px) {
+	.page {
+		max-width: 400px;
+	}
 }

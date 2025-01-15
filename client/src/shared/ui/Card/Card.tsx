@@ -8,15 +8,17 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
     className?: string
     children: ReactNode
     max?: boolean
+    onClick: () => void
 }
 
 export const Card = (props: CardProps) => {
-    const { className, children, max, ...otherProps } = props
+    const { className, onClick, children, max, ...otherProps } = props
     const [isSelected, setIsSelected] = useState(false)
 
     const onClickHandler = useCallback(() => {
+        onClick()
         setIsSelected((prev) => !prev)
-    }, [])
+    }, [onClick])
 
     const mods: Mods = {
         [cls.selected]: isSelected,

@@ -2,6 +2,7 @@ import { memo, useCallback } from 'react'
 
 import { useSelector } from 'react-redux'
 
+import { Notice } from '@/entities/Notice'
 import { getPostBody, getPostTitle, postActions } from '@/entities/Post'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
@@ -12,13 +13,15 @@ import { Text } from '@/shared/ui/Text'
 import Textarea from '@/shared/ui/TextArea/TextArea'
 
 import cls from './AddNewForm.module.scss'
+import { useAddNewPost } from '../../model/api/addNewPostApi'
 
 export interface AddNewFormProps {
     className?: string
+    onClose: () => void
 }
 
 const AddNewForm = (props: AddNewFormProps) => {
-    const { className } = props
+    const { className, onClose } = props
     const dispatch = useAppDispatch()
 
     const title = useSelector(getPostTitle)
@@ -38,12 +41,36 @@ const AddNewForm = (props: AddNewFormProps) => {
         [dispatch],
     )
 
+    const [addNewPost, { error }] = useAddNewPost()
+
+    function getError() {
+        if (error) {
+            if ('data' in error) {
+                return (error.data as { message?: string }).message || ''
+            }
+        }
+    }
+
+    const onClickNewPost = useCallback(() => {
+        addNewPost({ body, title })
+        if (error) {
+            onClose()
+        }
+        dispatch(postActions.setTitle(''))
+        dispatch(postActions.setBody(''))
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        })
+    }, [addNewPost, body, dispatch, error, onClose, title])
+
     return (
         <VStack
             gap="16"
             className={classNames(cls.addNewForm, {}, [className])}
         >
             <Text title="Добавьте новый пост" />
+            <Notice message={getError()} />
             <Input
                 autoFocus
                 type="text"
@@ -52,6 +79,7 @@ const AddNewForm = (props: AddNewFormProps) => {
                 onChange={onChangeTitle}
                 value={title}
             />
+
             <Textarea
                 id="exampleTextarea"
                 value={body}
@@ -59,7 +87,7 @@ const AddNewForm = (props: AddNewFormProps) => {
                 placeholder="Введите ваш текст..."
                 rows={5}
             />
-            <Button>Добавить</Button>
+            <Button onClick={onClickNewPost}>Добавить</Button>
         </VStack>
     )
 }

@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useCallback } from 'react'
 
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Card } from '@/shared/ui/Card'
@@ -11,13 +11,23 @@ interface PostItemProps {
     className?: string
     post: IPost
     postNumber: number
+    onClickPost: (id: number) => void
 }
 
 export const PostItem = memo((props: PostItemProps) => {
-    const { className, post, postNumber } = props
+    const { className, post, postNumber, onClickPost } = props
+
+    const onClick = useCallback(() => {
+        if (post.id) {
+            onClickPost(post.id)
+        }
+    }, [onClickPost, post.id])
 
     return (
-        <Card className={classNames(cls.postItem, {}, [className])}>
+        <Card
+            onClick={onClick}
+            className={classNames(cls.postItem, {}, [className])}
+        >
             <Text
                 title={`${postNumber} ${post.title}`}
                 className={cls.titleBlock}

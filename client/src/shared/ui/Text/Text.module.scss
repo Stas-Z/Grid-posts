@@ -5,3 +5,13 @@
 .text {
 	font: var(--font-s);
 }
+
+.error {
+	.title {
+		color: var(--red-light);
+	}
+
+	.text {
+		color: var(--red-dark);
+	}
+}

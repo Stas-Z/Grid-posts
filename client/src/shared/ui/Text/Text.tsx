@@ -4,17 +4,20 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 
 import cls from './Text.module.scss'
 
+type TextVariant = 'primary' | 'error'
+
 interface TextProps {
     className?: string
     title?: string
     text?: string
+    variant?: TextVariant
 }
 
 export const Text = memo((props: TextProps) => {
-    const { className, text, title } = props
+    const { className, text, title, variant = 'primary' } = props
 
     return (
-        <div>
+        <div className={classNames(cls.text, {}, [cls[variant]])}>
             {title && (
                 <h1 className={classNames(cls.title, {}, [className])}>
                     {title}

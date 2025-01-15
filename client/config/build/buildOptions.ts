@@ -14,6 +14,14 @@ export function buildOptions(options: BuildOptions): BuildEnvironmentOptions {
                 entryFileNames: 'assets/[name].[hash].js',
                 chunkFileNames: 'assets/[name]-[hash].js',
                 assetFileNames: 'assets/[name]-[hash][extname]',
+                manualChunks(id) {
+                    if (/node_modules\/(react|react-dom)/.test(id)) {
+                        return 'react'
+                    }
+                    if (id.includes('node_modules/@reduxjs')) {
+                        return 'redux'
+                    }
+                },
             },
         },
     }

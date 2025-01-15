@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common'
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    Post,
+    Query,
+} from '@nestjs/common'
 import { PostService } from './post.service'
 import { CreatePostDto } from './dto/create-post.dto'
 import { MyPost } from './schema/post.entity'
@@ -13,8 +21,11 @@ export class PostController {
     }
 
     @Get()
-    async findAll(): Promise<MyPost[]> {
-        return this.postService.findAll()
+    async findAll(
+        @Query('_page') page: number,
+        @Query('_limit') limit: number,
+    ): Promise<MyPost[]> {
+        return this.postService.findAll(page, limit)
     }
 
     @Get(':id')
@@ -23,7 +34,12 @@ export class PostController {
     }
 
     @Delete(':id')
-    async remove(@Param('id') id: number): Promise<void> {
+    async removeOne(@Param('id') id: number): Promise<void> {
         return this.postService.remove(id)
+    }
+
+    @Delete()
+    async removeMany(@Body('ids') ids: number[]): Promise<void> {
+        return this.postService.remove(ids)
     }
 }

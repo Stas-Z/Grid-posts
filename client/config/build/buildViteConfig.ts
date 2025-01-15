@@ -1,3 +1,4 @@
+import autoprefixer from 'autoprefixer'
 import { UserConfig } from 'vite'
 
 import { buildOptions } from './buildOptions'
@@ -22,6 +23,9 @@ export function buildViteConfig(options: BuildOptions): UserConfig {
                 generateScopedName: isDev
                     ? '[path][name]__[local]--[hash:base64:5]'
                     : '[hash:base64:8]',
+            },
+            postcss: {
+                plugins: [autoprefixer()],
             },
         },
         server: buildServer(options),

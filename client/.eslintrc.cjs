@@ -78,7 +78,10 @@ module.exports = {
             'error',
             {
                 alias: '@',
-                ignoreImportPatterns: ['**/StoreProvider'],
+                ignoreImportPatterns: [
+                    '**/StoreProvider',
+                    '**/updatePostMiddleware',
+                ],
             },
         ],
         'import/order': [

@@ -11,8 +11,10 @@ const start = async () => {
         const configService = app.get(ConfigService<IConfig>)
         const port = configService.get('port')
 
+        const isDev = configService.get('NODE_ENV') === 'development'
+
         app.enableCors({
-            origin: configService.get('clientUrl'),
+            origin: isDev ? true : configService.get('clientUrl'),
             credentials: true,
         })
         app.useGlobalPipes(

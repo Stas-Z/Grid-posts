@@ -6,6 +6,9 @@ import { postListActions } from '../slice/postListSlice'
 export interface FetchPostListProps {
     page?: number
 }
+interface DeleteTodoProps {
+    ids: number[]
+}
 
 export const postListApi = rtkApi.injectEndpoints({
     endpoints: (build) => ({
@@ -34,7 +37,35 @@ export const postListApi = rtkApi.injectEndpoints({
                 }
             },
         }),
+        deletePosts: build.mutation<void, DeleteTodoProps>({
+            query: ({ ids }) => ({
+                url: '/posts',
+                method: 'DELETE',
+                body: { ids },
+            }),
+            onQueryStarted: async ({ ids }, thunkAPI) => {
+                const { dispatch, queryFulfilled } = thunkAPI
+                const patchResult = dispatch(
+                    postListApi.util.updateQueryData(
+                        'getPostList',
+                        {},
+                        (draft) => {
+                            return draft.filter(
+                                (post) => !ids.includes(post.id!),
+                            )
+                        },
+                    ),
+                )
+                try {
+                    await queryFulfilled
+                } catch (error) {
+                    console.error('Error deleting posts:', error)
+                    patchResult.undo()
+                }
+            },
+        }),
     }),
 })
 
 export const useGetPostList = postListApi.useGetPostListQuery
+export const useDeletePosts = postListApi.useDeletePostsMutation

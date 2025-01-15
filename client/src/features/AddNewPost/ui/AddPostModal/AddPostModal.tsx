@@ -23,7 +23,7 @@ export const AddPostModal = memo((props: AddPostModalProps) => {
             lazy
         >
             <Suspense fallback={<Skeleton />}>
-                <AddNewFormAsync />
+                <AddNewFormAsync onClose={onClose} />
             </Suspense>
         </Modal>
     )
