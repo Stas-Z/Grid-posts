@@ -91,27 +91,27 @@ CLIENT_URL=http://localhost:3000
 
 1. Для запуска приложения:
 
-```bash
-   npm run start:dev
-```
+    ```bash
+    npm run start:dev
+    ```
 
     - Это запустит клиент и сервер одновременно.
 
 2. Для запуска отдельно фронтенда:
 
-```bash
-   cd client
-   npm run start:vite
-```
+    ```bash
+    cd client
+    npm run start:vite
+    ```
 
--   Это запустит приложение на `http://localhost:3000`.
+    - Это запустит приложение на `http://localhost:3000`.
 
 3. Для запуска отдельно бэкенда:
 
-```bash
-   cd client
-   npm run start:dev
-```
+    ```bash
+    cd client
+    npm run start:dev
+    ```
 
     - Бэкенд будет доступен по адресу `http://localhost:5000.`
 
