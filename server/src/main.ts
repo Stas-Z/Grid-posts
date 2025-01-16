@@ -23,6 +23,9 @@ const start = async () => {
                 whitelist: true,
             }),
         )
+
+        app.setGlobalPrefix('api')
+
         await app.listen(port, () =>
             console.log(`server started on PORT ${port}`),
         )

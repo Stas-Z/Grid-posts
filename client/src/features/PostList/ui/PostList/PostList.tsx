@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react'
+import { memo, useCallback, useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -26,10 +26,18 @@ export const PostList = memo((props: PostListProps) => {
 
     const hasMore = useSelector(getPostListHasMore)
 
-    const { data: posts, isFetching } = useGetPostList(
-        { page },
-        // { skip: !hasMore },
-    )
+    const {
+        data: posts,
+        isFetching,
+        refetch,
+        isError,
+    } = useGetPostList({ page })
+
+    useEffect(() => {
+        if (isError && posts === undefined) {
+            refetch()
+        }
+    }, [isError, posts, refetch])
 
     const selectPostHandler = useCallback(
         (id: number) => {
