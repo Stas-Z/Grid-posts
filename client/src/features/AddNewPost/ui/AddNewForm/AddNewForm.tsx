@@ -41,7 +41,7 @@ const AddNewForm = (props: AddNewFormProps) => {
         [dispatch],
     )
 
-    const [addNewPost, { error }] = useAddNewPost()
+    const [addNewPost, { error, isError }] = useAddNewPost()
 
     function getError() {
         if (error) {
@@ -53,16 +53,17 @@ const AddNewForm = (props: AddNewFormProps) => {
 
     const onClickNewPost = useCallback(() => {
         addNewPost({ body, title })
-        if (error) {
-            onClose()
-        }
-        dispatch(postActions.setTitle(''))
-        dispatch(postActions.setBody(''))
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        })
-    }, [addNewPost, body, dispatch, error, onClose, title])
+            .unwrap()
+            .then(() => {
+                onClose()
+                dispatch(postActions.setTitle(''))
+                dispatch(postActions.setBody(''))
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                })
+            })
+    }, [addNewPost, body, dispatch, onClose, title])
 
     return (
         <VStack
