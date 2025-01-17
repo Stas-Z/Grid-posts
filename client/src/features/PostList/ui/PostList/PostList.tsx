@@ -1,7 +1,5 @@
 import { memo, useCallback, useEffect } from 'react'
 
-import { useSelector } from 'react-redux'
-
 import { PostItem } from '@/entities/Post'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
@@ -9,7 +7,6 @@ import { HStack } from '@/shared/ui/Stack'
 
 import { useGetPostList } from '../../model/api/postListApi'
 import { usePostListSkeletons } from '../../model/lib/usePostListSkeleton'
-import { getPostListHasMore } from '../../model/selectors/getPostListSelector'
 import { postListActions } from '../../model/slice/postListSlice'
 
 interface PostListProps {
@@ -23,8 +20,6 @@ export const PostList = memo((props: PostListProps) => {
     const dispatch = useAppDispatch()
 
     const getPostSkeletons = usePostListSkeletons({})
-
-    const hasMore = useSelector(getPostListHasMore)
 
     const {
         data: posts,
